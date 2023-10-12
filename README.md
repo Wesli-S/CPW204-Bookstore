@@ -1,6 +1,7 @@
 # CPW204 BookStore
 In this project example, the repository is used to gain experience with 
 source control and TypeScript.
+[BookStore Website](https://wesli-s.github.io/CPW204-Bookstore/)
 
 
 ## Getting Started
