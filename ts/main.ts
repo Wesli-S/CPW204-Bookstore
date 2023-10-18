@@ -71,6 +71,11 @@ function getBook ():Book {
 
     //validate release-date
     let releaseDate = releaseDateTextBox.value;
+    let releaseDateCheck = Date.parse(releaseDate);
+    if (isNaN(releaseDateCheck)) {
+        isValidData = false;
+        releaseDateTextBox.nextSibling.textContent = "Release date must be a valid date";
+    }
 }
 
 function isValidIsbn(data: string) {

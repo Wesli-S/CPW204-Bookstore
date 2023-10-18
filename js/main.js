@@ -39,6 +39,11 @@ function getBook() {
         priceTextBox.nextElementSibling.textContent = "Price must be a positive number";
     }
     let releaseDate = releaseDateTextBox.value;
+    let releaseDateCheck = Date.parse(releaseDate);
+    if (isNaN(releaseDateCheck)) {
+        isValidData = false;
+        releaseDateTextBox.nextSibling.textContent = "Release date must be a valid date";
+    }
 }
 function isValidIsbn(data) {
     let regex = /^\d{13}$/;
