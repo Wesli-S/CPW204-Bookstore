@@ -78,6 +78,17 @@ function getBook ():Book {
         isValidData = false;
         releaseDateTextBox.nextElementSibling.textContent = "Release date must be a valid date";
     }
+
+    if(isValidData) {
+        let addedBook = new Book();
+        addedBook.isbn = isbn;
+        addedBook.price = price;
+        addedBook.title = title;
+        addedBook.releaseDate = new Date (releaseDate);
+
+        return addedBook;
+    }
+    return null; //if any invalid data is present
 }
 
 function isValidIsbn(data: string) {
@@ -90,7 +101,8 @@ function isValidIsbn(data: string) {
  * @param b The Book containing valid data to be added
  */
 function addBook (b:Book): void {
-
+    alert ("Data was valid, book added")
+    console.log(b);
 }
 
 //clears all validation  error message spans
