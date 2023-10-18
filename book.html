@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book</title>
     <script defer src="js/main.js"></script>
+
     <style>
         .error-msg {
             color: red;
@@ -25,13 +26,13 @@
         <br>
 
         <label for="price">Price</label>
-        <input type="text" id="price" step=".01">
+        <input type="number" id="price" step=".01">
         <span class="error-msg"></span>
         <br>
 
         <label for="release-date">Release Date</label>
         <input type="date" id="release-date">
-        <span class="error-msg"></span>
+        <span class="error-msg"></span> 
         <br>
 
         <button type="button" id="add-book"> Submit Book </button>

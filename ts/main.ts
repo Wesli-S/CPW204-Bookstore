@@ -37,6 +37,8 @@ function processBook () {
  * is invalid, null will be returned
  */
 function getBook ():Book {
+    clearAllErrorMessages();
+
     //get all inputs
     let isbnTextBox = document.querySelector("#isbn") as HTMLInputElement;
     let titleTextBox = document.querySelector("#title") as HTMLInputElement;
@@ -44,7 +46,7 @@ function getBook ():Book {
     let releaseDateTextBox = document.querySelector("#release-date") as HTMLInputElement;
 
     //validate data
-    let isValidData = true;
+    let isValidData:boolean = true;
 
     //validate isbn
     let isbn:string = isbnTextBox.value;
@@ -56,7 +58,7 @@ function getBook ():Book {
     //validate title
 
     let title: string = titleTextBox.value;
-    if(title =="") {
+    if(title.trim() =="") {
         isValidData = false;
         let titleErrorSpan = titleTextBox.nextElementSibling;
         titleErrorSpan.textContent = "You must provide a title";
@@ -64,17 +66,17 @@ function getBook ():Book {
 
     //validate price
     let price = parseFloat(priceTextBox.value);
-    if (isNaN(price)) {
+    if (isNaN(price) || price < 0) {
         isValidData = false;
         priceTextBox.nextElementSibling.textContent = "Price must be a positive number";
     }
 
     //validate release-date
     let releaseDate = releaseDateTextBox.value;
-    let releaseDateCheck = Date.parse(releaseDate);
+    let releaseDateCheck = Date.parse(releaseDate); //mental note: the clear error message isn't working for this one, the text doesn't even turn red
     if (isNaN(releaseDateCheck)) {
         isValidData = false;
-        releaseDateTextBox.nextSibling.textContent = "Release date must be a valid date";
+        releaseDateTextBox.nextElementSibling.textContent = "Release date must be a valid date";
     }
 }
 
@@ -89,4 +91,15 @@ function isValidIsbn(data: string) {
  */
 function addBook (b:Book): void {
 
+}
+
+//clears all validation  error message spans
+function clearAllErrorMessages(){
+    //Get all error-spans
+    let allSpans = document.querySelectorAll("form span.error-msg");
+
+    //Loop through, and set each span to an empty string
+    for (let i = 0; i < allSpans.length; i++) {
+        allSpans[i].textContent = "";
+    }
 }
