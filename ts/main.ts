@@ -37,7 +37,26 @@ function processBook () {
  * is invalid, null will be returned
  */
 function getBook ():Book {
-    
+    //get all inputs
+    let isbnTextBox = document.querySelector("#isbn") as HTMLInputElement;
+    let titleTextBox = document.querySelector("#title") as HTMLInputElement;
+    let priceTextBox = document.querySelector("#price") as HTMLInputElement;
+    let releaseDateTextBox = document.querySelector("#release-date") as HTMLInputElement;
+
+    //validate data
+    let isValidData = true;
+
+    //validate isbn
+    let isbn:string = isbnTextBox.value;
+    if(!isValidIsbn(isbn)) {
+        isValidData = false;
+        isbnTextBox.nextElementSibling.textContent = "ISBN must be 13 digits only";
+    }
+}
+
+function isValidIsbn(data: string) {
+    let regex = /^\d{13}$/; //exactly 13 digits
+    return regex.test(data);
 }
 
 /**
