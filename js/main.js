@@ -27,6 +27,18 @@ function getBook() {
         isValidData = false;
         isbnTextBox.nextElementSibling.textContent = "ISBN must be 13 digits only";
     }
+    let title = titleTextBox.value;
+    if (title == "") {
+        isValidData = false;
+        let titleErrorSpan = titleTextBox.nextElementSibling;
+        titleErrorSpan.textContent = "You must provide a title";
+    }
+    let price = parseFloat(priceTextBox.value);
+    if (isNaN(price)) {
+        isValidData = false;
+        priceTextBox.nextElementSibling.textContent = "Price must be a positive number";
+    }
+    let releaseDate = releaseDateTextBox.value;
 }
 function isValidIsbn(data) {
     let regex = /^\d{13}$/;
