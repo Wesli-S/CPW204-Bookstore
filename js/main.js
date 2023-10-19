@@ -51,6 +51,8 @@ function isValidIsbn(data) {
     return regex.test(data);
 }
 function addBook(b) {
+    alert ("Data was valid, book added")
+    console.log(b);
 }
 function clearAllErrorMessages() {
     let allSpans = document.querySelectorAll("span.error-msg");
