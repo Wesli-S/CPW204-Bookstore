@@ -43,19 +43,28 @@ function getBook() {
     let releaseDateCheck = Date.parse(releaseDate);
     if (isNaN(releaseDateCheck)) {
         isValidData = false;
-        releaseDateTextBox.nextSibling.textContent = "Release date must be a valid date";
+        releaseDateTextBox.nextElementSibling.textContent = "Release date must be a valid date";
     }
+    if (isValidData) {
+        let addedBook = new Book();
+        addedBook.isbn = isbn;
+        addedBook.price = price;
+        addedBook.title = title;
+        addedBook.releaseDate = new Date(releaseDate);
+        return addedBook;
+    }
+    return null;
 }
 function isValidIsbn(data) {
     let regex = /^\d{13}$/;
     return regex.test(data);
 }
 function addBook(b) {
-    alert ("Data was valid, book added")
+    alert("Data was valid, book added");
     console.log(b);
 }
 function clearAllErrorMessages() {
-    let allSpans = document.querySelectorAll("span.error-msg");
+    let allSpans = document.querySelectorAll("form span.error-msg");
     for (let i = 0; i < allSpans.length; i++) {
         allSpans[i].textContent = "";
     }
