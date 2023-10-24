@@ -111,7 +111,12 @@ function addBook (b:Book): void {
     bookDiv.appendChild(titleHeading); //this is what actually adds the title
 
     let bookDescription = document.createElement("p");
-    bookDescription.textContent = `This book was released on ${b.releaseDate} and costs $ ${b.price}`;
+    const currencyFormatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+    }); //format the currency so it looks like a price
+    let formattedPrice = currencyFormatter.format(b.price);
+    bookDescription.textContent = `This book was released on ${b.releaseDate} and costs ${formattedPrice}`;
     bookDiv.appendChild(bookDescription);
 
     //add bookDiv to the webpage
