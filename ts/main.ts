@@ -101,8 +101,20 @@ function isValidIsbn(data: string) {
  * @param b The Book containing valid data to be added
  */
 function addBook (b:Book): void {
-    alert ("Data was valid, book added")
     console.log(b);
+    //Add the book to the webpage
+    //Add book data to html using DOM manipulation
+    let bookDiv:HTMLDivElement = document.createElement("div");
+
+    let titleHeading = document.createElement("h2");
+    titleHeading.textContent = b.title + "   ISBN: " + b.isbn; //This is the title and ISBN
+    bookDiv.appendChild(titleHeading); //this is what actually adds the title
+
+    let bookDescription
+
+    //add bookDiv to the webpage
+    let bookListDisplay = document.querySelector("#book-display");//references book-display in the HTML
+    bookListDisplay.appendChild(bookDiv); //adds the newly created book 
 }
 
 //clears all validation  error message spans
