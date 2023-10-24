@@ -110,7 +110,9 @@ function addBook (b:Book): void {
     titleHeading.textContent = b.title + "   ISBN: " + b.isbn; //This is the title and ISBN
     bookDiv.appendChild(titleHeading); //this is what actually adds the title
 
-    let bookDescription
+    let bookDescription = document.createElement("p");
+    bookDescription.textContent = `This book was released on ${b.releaseDate} and costs $ ${b.price}`;
+    bookDiv.appendChild(bookDescription);
 
     //add bookDiv to the webpage
     let bookListDisplay = document.querySelector("#book-display");//references book-display in the HTML

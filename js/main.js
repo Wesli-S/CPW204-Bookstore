@@ -60,6 +60,9 @@ function addBook(b) {
     let titleHeading = document.createElement("h2");
     titleHeading.textContent = b.title + "   ISBN: " + b.isbn; 
     bookDiv.appendChild(titleHeading); 
+    let bookDescription = document.createElement("p");
+    bookDescription.textContent = `This book was released on ${b.releaseDate} and costs $ ${b.price}`;
+    bookDiv.appendChild(bookDescription);
     let bookListDisplay = document.querySelector("#book-display");
     bookListDisplay.appendChild(bookDiv); 
 }
