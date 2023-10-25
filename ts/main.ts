@@ -84,7 +84,15 @@ function getBook ():Book {
         addedBook.isbn = isbn;
         addedBook.price = price;
         addedBook.title = title;
-        addedBook.releaseDate = new Date (releaseDate);
+
+        //splits date into an array. For example "2023-10-24" would be {"2023", "10", "24"}
+        const dateParts:string[] = releaseDate.split("-"); //this part is so the date matches the current timezone
+        const year = parseInt(dateParts[0]);
+        const month = parseInt(dateParts[1]) - 1; //the -1 is there because months are index based
+        const day = parseInt(dateParts[2]);
+        const correctDate = new Date (year, month, day)
+
+        addedBook.releaseDate = correctDate;
 
         return addedBook;
     }

@@ -44,7 +44,12 @@ function getBook() {
         addedBook.isbn = isbn;
         addedBook.price = price;
         addedBook.title = title;
-        addedBook.releaseDate = new Date(releaseDate);
+        const dateParts = releaseDate.split("-");
+        const year = parseInt(dateParts[0]);
+        const month = parseInt(dateParts[1]) - 1;
+        const day = parseInt(dateParts[2]);
+        const correctDate = new Date(year, month, day);
+        addedBook.releaseDate = correctDate;
         return addedBook;
     }
     return null;
@@ -55,11 +60,10 @@ function isValidIsbn(data) {
 }
 function addBook(b) {
     console.log(b);
-    console.log(b);
     let bookDiv = document.createElement("div");
     let titleHeading = document.createElement("h2");
-    titleHeading.textContent = b.title + "   ISBN: " + b.isbn; 
-    bookDiv.appendChild(titleHeading); 
+    titleHeading.textContent = b.title + "   ISBN: " + b.isbn;
+    bookDiv.appendChild(titleHeading);
     let bookDescription = document.createElement("p");
     const currencyFormatter = new Intl.NumberFormat("en-US", {
         style: "currency",
@@ -69,7 +73,7 @@ function addBook(b) {
     bookDescription.textContent = `This book was released on ${b.releaseDate} and costs ${formattedPrice}`;
     bookDiv.appendChild(bookDescription);
     let bookListDisplay = document.querySelector("#book-display");
-    bookListDisplay.appendChild(bookDiv); 
+    bookListDisplay.appendChild(bookDiv);
 }
 function clearAllErrorMessages() {
     let allSpans = document.querySelectorAll("form span.error-msg");
