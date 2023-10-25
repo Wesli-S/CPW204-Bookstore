@@ -16,3 +16,8 @@ Note: (Make sure you install the LTS version)
 To compile the TypeScript files with the watch option, run the following command:
 `tsc --watch`. Using the watch option only requires us to compile once each time the
 project is opened.
+
+### VS Code Extensions
+The following extensions are very helpful in development
+- [Bootstrap Intellisense](https://marketplace.visualstudio.com/items?itemName=hossaini.bootstrap-intellisense) by Hosain Hossaini
+- [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) by Ritwick Dey
