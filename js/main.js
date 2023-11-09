@@ -78,19 +78,13 @@ function addBookToWebpage(b) {
 }
 function addBookToStorage(b) {
     const BookStorageKey = "Books";
-    let bookData = localStorage.getItem(BookStorageKey);
-    if (bookData == null) {
-        let books = [];
-        books.push(b);
-        bookData = JSON.stringify(books);
-        localStorage.setItem(BookStorageKey, bookData);
+    let books = [];
+    const bookData = localStorage.getItem(BookStorageKey);
+    if (bookData !== null) {
+        books = JSON.parse(bookData);
     }
-    else {
-        let books = JSON.parse(bookData);
-        books.push(b);
-        bookData = JSON.stringify(books);
-        localStorage.setItem(BookStorageKey, bookData);
-    }
+    books.push(b);
+    localStorage.setItem(BookStorageKey, JSON.stringify(books));
 }
 function clearAllErrorMessages() {
     let allSpans = document.querySelectorAll("form span.error-msg");

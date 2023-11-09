@@ -138,31 +138,22 @@ function addBookToWebpage (b:Book): void {
  * If no books are currently stored, a new list will be created and stored
  * @param b The Book that is going to be added to localStorage
  */
-function addBookToStorage (b:Book): void {
-    const BookStorageKey = "Books"
-    //Read existing books out of storage
-    let bookData = localStorage.getItem(BookStorageKey);
+function addBookToStorage(b: Book): void {
+    const BookStorageKey = "Books";
+    let books: Book[] = [];
 
-    // if bookData is null, "Books" key did not exist
-    if (bookData == null) {
-        //Create a new list and add current book
-        let books:Book[] = [];
-        books.push(b);
+    // Read existing books out of storage
+    const bookData = localStorage.getItem(BookStorageKey);
 
-        //add to localStorage
-        bookData = JSON.stringify(books);
-        localStorage.setItem(BookStorageKey, bookData);
+    if (bookData !== null) {
+        books = JSON.parse(bookData);
     }
-    else {
-        //Parse string into a list of books and add new book to the list
-        //store the newly modified list back in storage
-        let books:Book[] = JSON.parse(bookData);
-        books.push(b);
 
-        //Add back ot local storage
-        bookData = JSON.stringify(books);
-        localStorage.setItem(BookStorageKey, bookData);
-    }
+    // Add the current book to the list
+    books.push(b);
+
+    // Store the modified list back in storage
+    localStorage.setItem(BookStorageKey, JSON.stringify(books));
 }
 
 //clears all validation  error message spans
